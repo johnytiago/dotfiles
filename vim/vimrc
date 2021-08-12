@@ -1,0 +1,240 @@
+" ######### VUNDLE #########
+set nocompatible              " be iMproved, required
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'ryanoasis/vim-devicons'             "Icons para o nerdtree
+Plugin 'vim-airline/vim-airline'            "Status bar
+Plugin 'crusoexia/vim-monokai'
+Plugin 'tpope/vim-repeat'                   "Repeat last vim command
+Plugin 'ctrlpvim/ctrlp.vim'                 "Fuzzy search file
+Plugin 'vim-scripts/ReplaceWithRegister'    "Easy replacements
+Plugin 'scrooloose/nerdcommenter'           "Easy commments
+Plugin 'roxma/vim-tmux-clipboard'
+Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'               "Auto matching quotes
+Plugin 'terryma/vim-multiple-cursors'       "Multi-cursos sublime style
+"Plugin 'neoclide/coc.nvim'
+"Plugin 'shougo/denite.nvim'                " interfaces and windows
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'jparise/vim-graphql'
+"Plugin 'rking/ag.vim'
+
+call vundle#end()            " required
+" Done with Vundle stuff
+
+" ####### DEFAULTS ####### "
+syntax on
+syntax enable
+filetype plugin indent on
+set nocompatible
+set encoding=utf-8
+set fileencoding=utf-8
+set showcmd
+set ruler " show the cursor position at all times
+set number " show line numbers
+set showmatch " brackets/braces that is
+set mat=5 " duration to show matching brace (1/10 sec)
+set shortmess+=I " disable intro message / splashscreen
+set splitbelow " new hoz splits go below
+set splitright " new vert splits go right
+set backspace=indent,eol,start
+set list
+set listchars=tab:▸\ ,eol:¬,nbsp:☠
+set hidden " allow changing buffers without saving
+set cursorline
+set mouse=a
+set updatetime=250
+set timeoutlen=1000 ttimeoutlen=0
+
+" Spacing
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set colorcolumn=80
+set autoindent    " turns it on
+set smartindent   " does the right thing (mostly) in programs
+set laststatus=2 " Allways see statusbar
+"set tw=9999
+"set nowrap
+
+" ####### SINTAX ######
+au BufNewFile,BufRead *.ejs set filetype=html
+let g:jsx_ext_required = 0
+let g:typescript_indent_disable = 1
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd BufRead,BufNewFile *.js setlocal filetype=javascript
+let g:vue_disable_pre_processors=1
+
+" ####### VISUAL ######"
+set noshowmode
+set background=dark
+colorscheme monokai
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+set t_Co=256
+
+" ####### AIRLINE ######"
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#show_splits = 0
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" airline symbols
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+ 
+" ####### MAPPINGS ####### "
+imap jj <Esc>
+let mapleader = "\<Space>"
+nnoremap <Leader>. :e ~/.vimrc<CR>
+nnoremap <Leader>> :source ~/.vimrc<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+
+nnoremap <leader>o o<ESC>
+nnoremap <leader>O O<ESC>
+imap <C-e> <Esc>A
+imap <C-a> <Esc>I
+
+nnoremap <leader>t :registers<CR>
+nmap <Leader>r  <Plug>ReplaceWithRegisterOperator
+nmap <Leader>rr <Plug>ReplaceWithRegisterLine
+xmap <Leader>r  <Plug>ReplaceWithRegisterVisual
+
+autocmd FileType javascript inoremap <C-l> console.log()<Esc>i
+autocmd FileType vue inoremap <C-l> console.log()<Esc>i
+autocmd FileType ts inoremap <C-l> console.log()<Esc>i
+autocmd FileType typescript inoremap <C-l> console.log()<Esc>i
+
+autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_us
+
+"######## COC #########
+let g:coc_global_extensions = ['coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json']
+" Remap keys for applying codeAction to the current line.
+nmap <leader>gc  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>gf  <Plug>(coc-fix-current)
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gp <Plug>(coc-diagnostic-prev)
+nmap <silent> gn <Plug>(coc-diagnostic-next)
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+hi CocErrorFloat ctermbg=white
+
+"######## ALE #########
+"let b:ale_fixers = ['prettier', 'eslint']
+"let g:ale_fix_on_save = 1
+
+" ####### CTRLP ####### "
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_open_multiple_files = 't'
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" ####### RUN COMMANDS #######
+autocmd FileType javascript nnoremap <leader>n :call RunInTmux('node %')<CR>
+autocmd FileType typescript nnoremap <leader>n :call RunInTmux('ts-node --transpile-only %')<CR>
+autocmd FileType python nnoremap <leader>n :call RunInTmux('python3 %')<CR>
+autocmd FileType sh nnoremap <leader>n :call RunInTmux('./%')<CR>
+autocmd FileType go nnoremap <leader>n :call RunInTmux('go run %')<CR>
+nnoremap <leader>l :call NumberToggle()<cr>
+
+" This commands work when in insert mode
+autocmd FileType * inoremap <C-d> <DEL>
+autocmd FileType * inoremap <C-b> <LEFT>
+autocmd FileType * inoremap <C-k> <DOWN>
+autocmd FileType * inoremap <C-f> <RIGHT>
+autocmd FileType * inoremap <C-o> <ESC>o
+autocmd FileType * inoremap <C-O> <ESC>O
+
+" NERDtree
+nnoremap  <leader>/ :NERDTreeFind<CR>
+let NERDTreeIgnore = [
+  \'node_modules', '\.git$[[dir]]', 'package-lock.json',
+  \'.nyc_output', 'reports', '**/*.aux'
+\]
+let NERDTreeShowHidden=1
+
+
+" Go to tab by number
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 :tablast<cr>
+
+" Arrows
+" The Up one is usefull for navegating commands
+
+" ###### SEARCHING ######
+set ignorecase " ignore case when searching
+set smartcase " unless the search term contains uppercase chars
+set incsearch " find the next match as the search term is being typed
+set hlsearch " highlight search matches Wrap text instead of being on one line
+
+" ####### SWP #######
+set swapfile " Use a separate dir for swap files
+set directory=~/.vim/.swp//,. " List of directory names for the swap files.
+set undofile " Enable persistent undo
+set undodir=~/.vim/.undo//,.  " Store undofiles in a tmp dir
+
+" ####### FUNCTIONS ####### "
+" tmux helper fn
+function! RunInTmux(cmd)
+  :execute ":silent !tmux splitw -h '".a:cmd."; echo; echo -- DONE --; read'"
+endfunction
+
+function! NumberToggle()
+  if &relativenumber
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunction

@@ -1,0 +1,40 @@
+[user] 
+  name = johnytiago
+  email = joaosao10@gmail.com
+[alias]
+  a = add -A
+  ac = commit -am
+  fkup = commit --amend --no-edit
+  b = !git --no-pager branch 
+  c = commit -m
+  ck = checkout
+  d= diff --color-words
+  dd = diff --color-words --staged
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -25
+  ll = !git --no-pager log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -10
+  ss = !git --no-pager show --pretty=format:'%Cred%h%Creset - %C(bold blue)<%an>%Creset%  %Cgreen(%cr)%Creset% s %n' --name-only
+  s = status -su
+  ap = add --patch
+  gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
+[color]
+  ui = true
+[core]
+  editor = vim
+  pager = less -+F -+X
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
+[push]
+  default = simple
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  meta = 11
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse

@@ -1,4 +1,4 @@
-Dotfiles Template
+JT's Dotfiles
 =================
 
 This is a template repository for bootstrapping your dotfiles with [Dotbot][dotbot].
@@ -16,26 +16,20 @@ To keep submodules at their proper versions, you could include something like
 To upgrade your submodules to their latest versions, you could periodically run
 `git submodule update --init --remote`.
 
-Inspiration
------------
+The setup I need
+===============
 
-If you're looking for inspiration for how to structure your dotfiles or what
-kinds of things you can include, you could take a look at some repos using
-Dotbot.
-
-* [anishathalye's dotfiles][anishathalye_dotfiles]
-* [csivanich's dotfiles][csivanich_dotfiles]
-* [m45t3r's dotfiles][m45t3r_dotfiles]
-* [alexwh's dotfiles][alexwh_dotfiles]
-* [azd325's dotfiles][azd325_dotfiles]
-* [bluekeys' dotfiles][bluekeys_dotfiles]
-* [wazery's dotfiles][wazery_dotfiles]
-* [thirtythreeforty's dotfiles][thirtythreeforty_dotfiles]
-
-And there are about [700 more here][dotbot-users].
-
-If you're using Dotbot and you'd like to include a link to your dotfiles here
-as an inspiration to others, please submit a pull request.
+- Brewfile
+- Iterm
+  - Colorscheme
+  - Font
+- Oh-my-zsh
+- Tmux
+- Vim
+- MacOS settings
+  - text shortcuts
+  - keyboard modifiers
+  - US keyboard
 
 License
 -------
