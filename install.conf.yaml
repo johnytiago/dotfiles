@@ -7,14 +7,20 @@
 - link:
     ~/.tmux.conf: tmux/tmux.conf
     ~/.tmux.conf.local: tmux/tmux.conf.local
-    ~/.vim: vim/
     ~/.vimrc: vim/vimrc
-    ~/.zshrc: zshrc
-    ~/.oh-my-zsh: oh-my-zsh/
+    ~/.vim/bundle: vim/bundle
+    ~/.zshrc:
+      path: zsh/zshrc
+      force: true
+    ~/.antigenrc: zsh/antigenrc
     ~/.gitconfig: gitconfig
+    ~/.config/karabiner.json:
+      force: true
+      path: karabiner/karabiner.json
 
 - shell: 
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-my-zsh]
   - [vim +PluginInstall +qall, Installing Vim plugins]
-  - bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  - [bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing Brew 🍺]
   - brew bundle
   - ./macos.sh
