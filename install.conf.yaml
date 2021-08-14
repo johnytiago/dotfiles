@@ -3,6 +3,7 @@
 - create:
     - ~/.vim/.undo
     - ~/.vim/.swp
+    - ~/.config
     - ~/code
 
 - link:
@@ -22,6 +23,8 @@
 - shell: 
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-my-zsh]
   - [vim +PluginInstall +qall, Installing Vim plugins]
-  - [bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing Brew 🍺]
+  - [echo | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing Brew 🍺]
+  - echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+  - eval "$(/opt/homebrew/bin/brew shellenv)"
   - brew bundle
   - ./macos.sh
