@@ -3,6 +3,7 @@
 - create:
     - ~/.vim/.undo
     - ~/.vim/.swp
+    - ~/code
 
 - link:
     ~/.tmux.conf: tmux/tmux.conf
