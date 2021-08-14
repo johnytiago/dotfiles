@@ -10,6 +10,10 @@ The setup I need:
 - Vim
 - MacOS settings
 
+### Instalation
+
+`./install`
+
 ### After instalation 
 
 - Select `iterm/jt.json`'s iterm profile and colorscheme
