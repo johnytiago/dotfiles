@@ -10,7 +10,9 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.tmux.conf.local: tmux/tmux.conf.local
     ~/.vimrc: vim/vimrc
-    ~/.vim/colors: vim/colors
+    ~/.vim/colors:
+      path: vim/colors
+      force: true
     ~/.zshrc:
       path: zsh/zshrc
       force: true
