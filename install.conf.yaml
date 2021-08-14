@@ -3,6 +3,7 @@
 - create:
     - ~/.vim/.undo
     - ~/.vim/.swp
+    - ~/.vim/colors 
     - ~/.config
     - ~/code
 
@@ -11,6 +12,7 @@
     ~/.tmux.conf.local: tmux/tmux.conf.local
     ~/.vimrc: vim/vimrc
     ~/.vim/bundle: vim/bundle
+    ~/.vim/colors: vim/colors
     ~/.zshrc:
       path: zsh/zshrc
       force: true
