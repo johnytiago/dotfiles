@@ -23,16 +23,17 @@
       path: karabiner/karabiner.json
 
 - shell: 
-  - command: sh -c "[ ! -d '$HOME/.oh-my-zsh' ] && $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  - command: [ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     description: Installing Oh-my-zsh
   - command: echo | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     description: Installing Brew 🍺
     stdout: true
   - echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
-  - eval "$(/opt/homebrew/bin/brew shellenv)" && brew bundle
+  - command: eval "$(/opt/homebrew/bin/brew shellenv)" && brew bundle
+    stdout: true
   - command: ./macos.sh
     stdout: true
-  - command: sh -c "[ ! -d '$HOME/.vim/bundle' ] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
+  - command: [ ! -d "$HOME/.vim/bundle" ] && sh -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
     description: Installing Vim Vundle
   - command: vim +PluginInstall +qall
     description: Installing Vim plugins
