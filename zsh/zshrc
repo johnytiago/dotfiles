@@ -108,3 +108,4 @@ bindkey '^x^u' undo
 bindkey '^x^r' redo
 
 setopt inc_append_history
+eval "$(/opt/homebrew/bin/brew shellenv)"
