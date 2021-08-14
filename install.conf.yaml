@@ -3,7 +3,6 @@
 - create:
     - ~/.vim/.undo
     - ~/.vim/.swp
-    - ~/.vim/colors 
     - ~/.config
     - ~/code
 
