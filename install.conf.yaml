@@ -23,10 +23,17 @@
       path: karabiner/karabiner.json
 
 - shell: 
-  - [sh -c "[ ! -d '$HOME/.oh-my-zsh' ] && $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing Oh-my-zsh]
-  - [echo | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)", Installing Brew 🍺]
+  - command: sh -c "[ ! -d '$HOME/.oh-my-zsh' ] && $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    description: Installing Oh-my-zsh
+  - command: echo | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    description: Installing Brew 🍺
+    stdout: true
   - echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
   - eval "$(/opt/homebrew/bin/brew shellenv)" && brew bundle
-  - ./macos.sh
-  - [[ ! -d '$HOME/.oh-my-zsh' ] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim, Installing Vim Vundle] 
-  - [vim +PluginInstall +qall, Installing Vim plugins]
+  - command: ./macos.sh
+    stdout: true
+  - command: [ ! -d '$HOME/.vim/bundle' ] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    description: Installing Vim Vundle
+  - command: vim +PluginInstall +qall
+    description: Installing Vim plugins
+    stdout: true
