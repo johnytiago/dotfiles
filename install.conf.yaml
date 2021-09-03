@@ -20,9 +20,6 @@
       force: true
     ~/.antigenrc: zsh/antigenrc
     ~/.gitconfig: gitconfig
-    ~/.config/karabiner.json:
-      force: true
-      path: karabiner/karabiner.json
 
 - shell: 
   - command: test -d "~/.oh-my-zsh" && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
