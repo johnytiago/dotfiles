@@ -27,7 +27,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'jparise/vim-graphql'
-"Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'w0rp/ale'
 
 call vundle#end()            " required
 " Done with Vundle stuff
@@ -108,7 +109,7 @@ endif
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
- 
+
 " ####### MAPPINGS ####### "
 imap jj <Esc>
 let mapleader = "\<Space>"
@@ -154,8 +155,14 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 hi CocErrorFloat ctermbg=white
 
 "######## ALE #########
-"let b:ale_fixers = ['prettier', 'eslint']
-"let g:ale_fix_on_save = 1
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 1
 
 " ####### CTRLP ####### "
 let g:ctrlp_map = '<leader>f'
@@ -171,6 +178,17 @@ if executable('ag')
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
+endif
+
+" ####### ACK ##########
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+set shellpipe=>
+let g:ack_use_cword_for_empty_search = 1
+"let g:ackhighlight = 1   " highlight search term
+let g:ack_qhandler = "botright copen 20" " 30 results
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --smart-case'
 endif
 
 " ####### RUN COMMANDS #######
