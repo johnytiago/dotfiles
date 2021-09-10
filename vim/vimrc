@@ -57,6 +57,14 @@ set mouse=a
 set updatetime=250
 set timeoutlen=1000 ttimeoutlen=0
 
+" moving aroung in command mode
+cnoremap <c-b> <left>
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
+cnoremap <c-f> <right>
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
 " Spacing
 set tabstop=2
 set expandtab
@@ -186,7 +194,7 @@ nnoremap <Leader>a :Ack!<Space>
 set shellpipe=>
 let g:ack_use_cword_for_empty_search = 1
 "let g:ackhighlight = 1   " highlight search term
-let g:ack_qhandler = "botright copen 20" " 30 results
+"let g:ack_qhandler = "botright copen 20" " 30 results
 if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
 endif
