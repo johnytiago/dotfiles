@@ -64,6 +64,7 @@ cnoremap <c-k> <up>
 cnoremap <c-f> <right>
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+cnoremap <c-d> <del>
 
 " Spacing
 set tabstop=2

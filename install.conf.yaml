@@ -6,6 +6,7 @@
     - ~/.vim/.undo
     - ~/.vim/.swp
     - ~/.config
+    - ~/.n
     - ~/code
 
 - link:
@@ -21,7 +22,7 @@
     ~/.antigenrc: zsh/antigenrc
     ~/.gitconfig: gitconfig
 
-- shell: 
+- shell:
   - command: test -d "~/.oh-my-zsh" && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true
     description: Installing Oh-my-zsh
     stdout: false

@@ -344,6 +344,7 @@ unbind C-a
 unbind C-b
 set -g prefix C-h
 bind C-h send-prefix
+bind n break-pane
 
 # move status line to top
 #set -g status-position top

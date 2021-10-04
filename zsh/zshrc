@@ -3,11 +3,23 @@ source $(brew --prefix)/share/antigen/antigen.zsh
 antigen init ~/.antigenrc
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.n/bin:/opt/homebrew/bin:$PATH:$HOME/bin:/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/johnytiago/.oh-my-zsh"
 export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+export N_PREFIX="$HOME/.n"
+
+## Configure spaceship prompt
+export SPACESHIP_DOCKER_SHOW=false  # 🐳👋🏽
+export SPACESHIP_KUBECTL_SHOW=true
+export SPACESHIP_KUBECTL_VERSION_SHOW=false
+export SPACESHIP_KUBECTL_SYMBOL="🔹 "
+export SPACESHIP_KUBECONTEXT_COLOR=white
+export SPACESHIP_KUBECONTEXT_COLOR_GROUPS=(
+  # red if namespace is "production"
+  red    production
+)
 
 ## Uncomment the following line to use case-sensitive completion.
 ## CASE_SENSITIVE="true"
@@ -67,13 +79,6 @@ bindkey -e
 # export LANG=en_US.UTF-8
 export EDITOR='vim'
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -82,12 +87,13 @@ export EDITOR='vim'
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias zshsource="source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vi="vim"
 alias k="kubectl"
+alias ktx="kubectx"
+alias kns="kubens"
 alias tree="tree -I node_modules"
 
 alias POST='curl -sX POST -H "Content-Type: application/json" '
@@ -109,3 +115,5 @@ bindkey '^x^r' redo
 
 setopt inc_append_history
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+source ~/.kodify-env.sh

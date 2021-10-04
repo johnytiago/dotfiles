@@ -2,6 +2,9 @@
 defaults write -g InitialKeyRepeat -int 10
 defaults write -g KeyRepeat -int 2
 
+defaults delete -g ApplePressAndHoldEnabled
+defaults write -g ApplePressAndHoldEnabled -bool false
+
 # Remap Capslock to option on Keychron K2 keyboard
 defaults write -g com.apple.keyboard.modifiermapping.1452-591-0 \
   '{ HIDKeyboardModifierMappingDst = 30064771298; HIDKeyboardModifierMappingSrc = 30064771129; }'
@@ -126,7 +129,7 @@ sudo mdutil -i on / > /dev/null
 # Rebuild the index from scratch
 sudo mdutil -E / > /dev/null
 
-### Messages 
+### Messages
 
 # Disable continuous spell checking
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
