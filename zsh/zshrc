@@ -2,12 +2,19 @@ source $(brew --prefix)/share/antigen/antigen.zsh
 
 antigen init ~/.antigenrc
 
+export SSLKEYLOGFILE=~/ssl-key.log
+
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/.n/bin:/opt/homebrew/bin:$PATH:$HOME/bin:/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/johnytiago/.oh-my-zsh"
-export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+export GOPATH="$HOME/code/go";
+#export GOROOT="/opt/homebrew/bin/go";
+export GOROOT="/opt/homebrew/opt/go/libexec"
+export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+
 export N_PREFIX="$HOME/.n"
 
 ## Configure spaceship prompt
@@ -91,9 +98,10 @@ alias zshconfig="vim ~/.zshrc"
 alias zshsource="source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vi="vim"
-alias k="kubectl"
+alias k="kubecolor"
 alias ktx="kubectx"
 alias kns="kubens"
+alias lzd="lazydocker"
 alias tree="tree -I node_modules"
 
 alias POST='curl -sX POST -H "Content-Type: application/json" '
@@ -113,7 +121,15 @@ bindkey '^d' delete-char
 bindkey '^x^u' undo
 bindkey '^x^r' redo
 
+
+export HISTSIZE=100000
 setopt inc_append_history
+setopt SHARE_HISTORY
+export HISTCONTROL=ignoredups:erasedups
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source ~/.kodify-env.sh
+
+# LLVM env
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"

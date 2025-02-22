@@ -22,13 +22,16 @@ Plugin 'jiangmiao/auto-pairs'               "Auto matching quotes
 Plugin 'terryma/vim-multiple-cursors'       "Multi-cursos sublime style
 "Plugin 'neoclide/coc.nvim'
 "Plugin 'shougo/denite.nvim'                " interfaces and windows
+Plugin 'fatih/vim-go'                       "Go Plugin
+Plugin 'digitaltoad/vim-pug'                  " pug sintax highlighting
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'jparise/vim-graphql'
 Plugin 'mileszs/ack.vim'
-Plugin 'w0rp/ale'
+Plugin 'bkad/vim-terraform'                 "Terraform sintax
+"Plugin 'w0rp/ale'
 
 call vundle#end()            " required
 " Done with Vundle stuff
@@ -55,7 +58,11 @@ set hidden " allow changing buffers without saving
 set cursorline
 set mouse=a
 set updatetime=250
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=500 ttimeoutlen=0
+set relativenumber
+" check one time after 4s of inactivity in normal mode
+set autoread
+au CursorHold * checktime
 
 " moving aroung in command mode
 cnoremap <c-b> <left>
@@ -140,6 +147,8 @@ nmap <Leader>r  <Plug>ReplaceWithRegisterOperator
 nmap <Leader>rr <Plug>ReplaceWithRegisterLine
 xmap <Leader>r  <Plug>ReplaceWithRegisterVisual
 
+nnoremap <leader>c :!code .<cr>
+
 autocmd FileType javascript inoremap <C-l> console.log()<Esc>i
 autocmd FileType vue inoremap <C-l> console.log()<Esc>i
 autocmd FileType ts inoremap <C-l> console.log()<Esc>i
@@ -191,10 +200,11 @@ endif
 
 " ####### ACK ##########
 cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
+nnoremap <Leader>a :tabe <bar> :Ack!<Space>
 set shellpipe=>
 let g:ack_use_cword_for_empty_search = 1
-"let g:ackhighlight = 1   " highlight search term
+let g:ack_autoclose = 1   " close after opening a doc
+let g:ackpreview = 1
 "let g:ack_qhandler = "botright copen 20" " 30 results
 if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
@@ -223,7 +233,11 @@ let NERDTreeIgnore = [
   \'.nyc_output', 'reports', '**/*.aux'
 \]
 let NERDTreeShowHidden=1
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
+autocmd BufEnter NERD_tree_* | execute 'normal R'
 
 " Go to tab by number
 nnoremap <leader>1 1gt

@@ -8,6 +8,10 @@
     - ~/.config
     - ~/.n
     - ~/code
+    - ~/code/go
+    - ~/code/go/src
+    - ~/go
+    - ~/.go
 
 - link:
     ~/.tmux.conf: tmux/tmux.conf

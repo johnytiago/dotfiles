@@ -1,13 +1,14 @@
-[user] 
-  name = johnytiago
-  email = joaosao10@gmail.com
+[user]
+	name = JT
+  email = me@joaotiago.dev
 [alias]
   a = add -A
   ac = commit -am
   fkup = commit --amend --no-edit
-  b = !git --no-pager branch 
+  b = !git --no-pager branch
   c = commit -m
   ck = checkout
+  cp = cherry-pick
   d= diff --color-words
   dd = diff --color-words --staged
   l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -25
@@ -28,6 +29,7 @@
   rebase = true
 [push]
   default = simple
+	autoSetupRemote = true
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
@@ -42,3 +44,10 @@
   whitespace = red reverse
 [diff "sopsdiffer"]
 	textconv = sops -d
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
