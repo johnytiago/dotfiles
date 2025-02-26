@@ -14,6 +14,7 @@
     - ~/.go
 
 - link:
+    ~/.config/nvim: nvim
     ~/.tmux.conf: tmux/tmux.conf
     ~/.tmux.conf.local: tmux/tmux.conf.local
     ~/.vimrc: vim/vimrc
@@ -34,8 +35,8 @@
     description: Installing Brew 🍺
   - command: eval "$(/opt/homebrew/bin/brew shellenv)" && brew bundle
   - command: ./macos.sh
-  - command: test -d "~/.vim/bundle" && sh -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim" || true
-    description: Installing Vim Vundle
-    stdout: false
-  - command: vim +PluginInstall +qall
-    description: Installing Vim plugins
+  # - command: test -d "~/.vim/bundle" && sh -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim" || true
+  #   description: Installing Vim Vundle
+  #   stdout: false
+  # - command: vim +PluginInstall +qall
+  #   description: Installing Vim plugins
