@@ -17,6 +17,7 @@
   s = status -su
   ap = add --patch
   gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
+  continue = rebase --continue
 [color]
   ui = true
 [core]
