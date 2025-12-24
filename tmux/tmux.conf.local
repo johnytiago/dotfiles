@@ -401,8 +401,8 @@ set -g mode-keys vi
 # replace C-b by C-a instead of using both prefixes
 set -gu prefix2
 unbind C-a
-# set -g prefix C-a
-# bind C-a send-prefix
+set -g prefix C-h
+bind C-h send-prefix
 
 # if you don't want Oh my tmux! to alter a binding or a setting, use #!important
 bind c new-window -c '#{pane_current_path}' #!important
@@ -413,6 +413,8 @@ bind m run "cut -c3- '#{TMUX_CONF}' | sh -s _toggle_mouse" \; display 'mouse #{?
 # move status line to top
 #set -g status-position top
 
+set -as terminal-overrides ',xterm-256color:RGB'
+set -as terminal-overrides ',tmux-256color:RGB'
 
 # -- tpm -----------------------------------------------------------------------
 
